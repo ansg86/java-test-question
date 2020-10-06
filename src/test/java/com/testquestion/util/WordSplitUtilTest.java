@@ -39,4 +39,10 @@ public class WordSplitUtilTest {
 		String[] input = {"hellocat", "apple,bat,cat,goodbye,helloMe,yellow,why"};
 		assertEquals("not possible", WordSplitUtil.wordSplit(input));
 	}
+	
+	@Test
+	public void givenInputExistsInDictionaryAsRealWordWhenWordSplitThenExpectNotPossible() {
+		String[] input = {"testing", "testing,a,b,ac"};
+		assertEquals("not possible", WordSplitUtil.wordSplit(input));
+	}
 }

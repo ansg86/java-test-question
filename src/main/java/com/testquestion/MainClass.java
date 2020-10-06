@@ -12,6 +12,6 @@ public class MainClass {
 		System.out.println(WordSplitUtil.wordSplit(testInput));
 		
 		// Q2 testing
-		System.out.println(RunLengthUtil.runLength("wwwggopp"));
+		System.out.println(RunLengthUtil.runLength("wwwbbbw"));
 	}
 }

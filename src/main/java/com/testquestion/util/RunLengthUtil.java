@@ -1,34 +1,37 @@
 package com.testquestion.util;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class RunLengthUtil {
 
 	public static String runLength(String input) {
 		validateInput(input);
-		
+
+		// prepare input for further process
 		char[] characterArray = input.toCharArray();
-		Map<Character, Integer> result = new HashMap<Character, Integer>();
-		
-		for (char character : characterArray) {
-			if (result.containsKey(character)) {
-				Integer count = result.get(character);
-				result.put(character, count+1);
+		StringBuilder result = new StringBuilder();
+
+		// initialize count
+		int count = 1;
+
+		for (int i = 0; i < characterArray.length; i++) {
+			// if the subsequent character is a match , update count
+			// ensure the next character(i+1) does not exceed the characterArray.length
+			if (i + 1 < characterArray.length && characterArray[i] == characterArray[i + 1]) {
+				count++;
 			} else {
-				result.put(character, 1);
+				// if it no longer match, append output to stringBuilder, and reinitialize count
+				// to 1
+				result.append(count).append(characterArray[i]);
+				count = 1;
 			}
+
 		}
-		
-		StringBuilder sb = new StringBuilder();
-		result.entrySet().stream().forEach(entry -> sb.append(entry.getValue()).append(entry.getKey()));
-		
-		return sb.toString();
+
+		return result.toString();
 	}
-	
+
 	private static void validateInput(String input) {
 		if (input == null) {
 			throw new IllegalArgumentException("The input cannot be null");
-		} 
+		}
 	}
 }
